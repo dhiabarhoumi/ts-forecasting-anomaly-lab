@@ -1,0 +1,31 @@
+name: "Time-Series Forecasting & Anomaly Lab"
+dates: {start: "2024-03", end: "2024-04"}
+role_tags: [Data Science, ML Engineering, Time Series, MLOps]
+stack:
+  - PyTorch 2.2.1 + pytorch-forecasting 1.0.0 (TFT)
+  - LightGBM 4.3.0, Prophet 1.1.5
+  - MLflow 2.11.3, Optuna 3.6.0
+  - Evidently 0.4.17
+optional_stack:
+  - Feast (feature store)
+datasets:
+  - retail: "M5-like hierarchical sales"
+  - energy: "OPSD/GEFCom-style load with weather"
+evaluation:
+  cv: "rolling-origin"
+  horizon: [28, 24]
+  metrics: ["MAPE","sMAPE","RMSE","MASE","PI_coverage"]
+hierarchy:
+  method: ["none","bu","mint"]
+anomaly:
+  methods: ["residual","iforest","ocsvm"]
+benchmarks:
+  mape_target: "<= 0.12"
+  anomaly_precision_at_k: ">= 0.75"
+  retrain_time_minutes: "3-8 per model"
+evidence:
+  mlflow_ui: "http://localhost:5000"
+  reports: ["artifacts/reports/comparison.md","artifacts/reports/energy_drift.html"]
+limits:
+  - "Small included subsets; full datasets require download scripts."
+  - "Weather data coverage varies by location; cached features provided for demo."

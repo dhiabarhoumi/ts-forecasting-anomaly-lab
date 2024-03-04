@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mlflow:
+    image: mlflow/mlflow:2.11.3@sha256:a6f5e1e5e8a3b0a2d5e6b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7
+    container_name: mlflow-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./artifacts/mlruns:/mlflow/mlruns
+    command: mlflow server --backend-store-uri /mlflow/mlruns --host 0.0.0.0 --port 5000
+
+  forecast-app:
+    build: .
+    container_name: forecast-app
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+    command: tail -f /dev/null  # Keep container running

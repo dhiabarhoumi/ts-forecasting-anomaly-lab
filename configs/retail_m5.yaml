@@ -1,0 +1,100 @@
+dataset:
+  name: retail_m5_subset
+  path: data/retail/
+  freq: D
+  target: y
+  id_col: series_id
+  ts_col: ds
+  hierarchy_levels: ["state", "store", "dept", "item"]
+  horizon: 28
+
+features:
+  lags: [1, 7, 28]
+  rolls:
+    - window: 7
+      stats: [mean, std]
+    - window: 28
+      stats: [mean, std, min, max]
+  fourier:
+    periods: [7, 365.25]
+    k: 5
+  holidays:
+    countries: ["US"]
+    lookback: 7
+    lookahead: 7
+  promos:
+    - start: "2016-11-20"
+      end: "2016-11-27"
+      name: "black_friday"
+    - start: "2016-12-20"
+      end: "2016-12-31"
+      name: "christmas"
+
+models:
+  naive:
+    seasonal_period: 7
+  
+  prophet:
+    seasonality_mode: "additive"
+    changepoint_prior_scale: 0.05
+    seasonality_prior_scale: 10.0
+    holidays_prior_scale: 10.0
+    daily_seasonality: false
+    weekly_seasonality: true
+    yearly_seasonality: true
+  
+  lgbm:
+    objective: "regression"
+    metric: "rmse"
+    num_leaves: 64
+    learning_rate: 0.05
+    n_estimators: 2000
+    early_stopping_rounds: 100
+    min_child_samples: 20
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.1
+    reg_lambda: 0.1
+    random_state: 42
+  
+  tft:
+    max_encoder_length: 90
+    max_prediction_length: 28
+    hidden_size: 64
+    lstm_layers: 2
+    dropout: 0.1
+    attention_head_size: 4
+    learning_rate: 0.001
+    batch_size: 256
+    max_epochs: 30
+    gradient_clip_val: 0.1
+
+cv:
+  method: "rolling"
+  n_splits: 4
+  horizon: 28
+  min_train_points: 365
+  step_size: 28
+
+reconciliation:
+  method: "mint"  # none | bu | mint
+  mint_method: "shrink"
+
+anomaly:
+  pi_alpha: 0.9
+  residual:
+    method: "quantile"
+    lower_quantile: 0.05
+    upper_quantile: 0.95
+  iforest:
+    n_estimators: 200
+    contamination: 0.02
+    random_state: 42
+  ocsvm:
+    kernel: "rbf"
+    nu: 0.02
+
+logging:
+  mlflow_experiment: "retail_m5"
+  log_level: "INFO"
+  save_predictions: true

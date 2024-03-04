@@ -1,0 +1,92 @@
+dataset:
+  name: energy_opsd
+  path: data/energy/
+  freq: H
+  target: load_actual
+  id_col: series_id
+  ts_col: ds
+  horizon: 24
+
+features:
+  lags: [1, 24, 168]  # 1h, 1d, 1w
+  rolls:
+    - window: 24
+      stats: [mean, std]
+    - window: 168
+      stats: [mean, std, min, max]
+  fourier:
+    periods: [24, 168, 8766]  # daily, weekly, yearly
+    k: 5
+  holidays:
+    countries: ["DE", "FR"]
+    lookback: 24
+    lookahead: 24
+  weather:
+    enabled: true
+    features: ["temperature", "wind_speed", "humidity"]
+    lags: [1, 24]
+
+models:
+  naive:
+    seasonal_period: 168
+  
+  prophet:
+    seasonality_mode: "multiplicative"
+    changepoint_prior_scale: 0.01
+    seasonality_prior_scale: 15.0
+    holidays_prior_scale: 15.0
+    daily_seasonality: true
+    weekly_seasonality: true
+    yearly_seasonality: true
+  
+  lgbm:
+    objective: "regression"
+    metric: "rmse"
+    num_leaves: 128
+    learning_rate: 0.03
+    n_estimators: 3000
+    early_stopping_rounds: 150
+    min_child_samples: 30
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.05
+    reg_lambda: 0.05
+    random_state: 42
+  
+  tft:
+    max_encoder_length: 168
+    max_prediction_length: 24
+    hidden_size: 128
+    lstm_layers: 2
+    dropout: 0.15
+    attention_head_size: 8
+    learning_rate: 0.0005
+    batch_size: 128
+    max_epochs: 40
+    gradient_clip_val: 0.1
+
+cv:
+  method: "rolling"
+  n_splits: 5
+  horizon: 24
+  min_train_points: 2160  # 90 days
+  step_size: 168  # 1 week
+
+anomaly:
+  pi_alpha: 0.9
+  residual:
+    method: "quantile"
+    lower_quantile: 0.01
+    upper_quantile: 0.99
+  iforest:
+    n_estimators: 300
+    contamination: 0.01
+    random_state: 42
+  ocsvm:
+    kernel: "rbf"
+    nu: 0.01
+
+logging:
+  mlflow_experiment: "energy_opsd"
+  log_level: "INFO"
+  save_predictions: true

@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Artifacts
+artifacts/mlruns/
+artifacts/reports/*.html
+artifacts/reports/*.png
+artifacts/reports/*.csv
+!artifacts/reports/.gitkeep
+
+# Data
+data/retail/*.csv
+data/energy/*.csv
+data/energy/*.parquet
+!data/retail/.gitkeep
+!data/energy/.gitkeep
+
+# Models
+models/
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Linting & formatting
+.ruff_cache/
+.mypy_cache/
+.black_cache/
+
+# Environment
+.env
+.env.local
