@@ -44,8 +44,8 @@ data/energy/*.parquet
 !data/retail/.gitkeep
 !data/energy/.gitkeep
 
-# Models
-models/
+# Model artifacts
+saved_models/
 *.pkl
 *.joblib
 *.h5
