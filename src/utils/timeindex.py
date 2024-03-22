@@ -64,9 +64,9 @@ def fill_time_gaps(
         df = df.reindex(idx)
         
         if method == "ffill":
-            df = df.fillna(method="ffill")
+            df = df.ffill()
         elif method == "bfill":
-            df = df.fillna(method="bfill")
+            df = df.bfill()
         elif method == "interpolate":
             df = df.interpolate(method="linear")
         elif method == "zero":
@@ -82,9 +82,9 @@ def fill_time_gaps(
             group = group.reindex(idx)
             
             if method == "ffill":
-                group = group.fillna(method="ffill")
+                group = group.ffill()
             elif method == "bfill":
-                group = group.fillna(method="bfill")
+                group = group.bfill()
             elif method == "interpolate":
                 group = group.interpolate(method="linear")
             elif method == "zero":
