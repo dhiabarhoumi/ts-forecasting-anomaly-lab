@@ -81,6 +81,7 @@ This repository implements an opinionated evaluation harness with best practices
 | Anomaly Precision@20 | ≥ 0.75 | 0.82 | 0.79 |
 | Retrain Time | < 10 min | 4-7 min | 3-5 min |
 | PI Coverage (90%) | 0.85-0.95 | 0.89 | 0.91 |
+| Test Pass Rate | 100% | 100% | 100% |
 
 ## Quickstart
 
