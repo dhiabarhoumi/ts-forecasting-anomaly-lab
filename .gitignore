@@ -42,7 +42,9 @@ data/retail/*.csv
 data/energy/*.csv
 data/energy/*.parquet
 !data/retail/.gitkeep
+!data/retail/sample.csv
 !data/energy/.gitkeep
+!data/energy/sample.csv
 
 # Model artifacts
 saved_models/
