@@ -15,11 +15,11 @@ def mape(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def smape(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """Symmetric Mean Absolute Percentage Error."""
-    denominator = (np.abs(y_true) + np.abs(y_pred)) / 2
+    denominator = (np.abs(y_true) + np.abs(y_pred))
     mask = denominator != 0
     if not mask.any():
         return np.inf
-    return np.mean(np.abs(y_true[mask] - y_pred[mask]) / denominator[mask]) * 100
+    return np.mean(2.0 * np.abs(y_true[mask] - y_pred[mask]) / denominator[mask]) * 100
 
 
 def rmse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
