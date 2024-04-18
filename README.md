@@ -92,7 +92,12 @@ This repository implements an opinionated evaluation harness with best practices
 git clone https://github.com/yourhandle/ts-forecasting-anomaly-lab.git
 cd ts-forecasting-anomaly-lab
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# On Linux/Mac
+source .venv/bin/activate
+
+# On Windows
+.venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
