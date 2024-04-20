@@ -2,7 +2,7 @@
 
 # 🔮 Time-Series Forecasting & Anomaly Lab
 
-[![CI](https://github.com/yourhandle/ts-forecasting-anomaly-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/yourhandle/ts-forecasting-anomaly-lab/actions/workflows/ci.yml)
+[![CI](https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab/actions/workflows/ci.yml)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3118/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -178,7 +178,7 @@ graph TB
 
 ```bash
 # Clone repository
-git clone https://github.com/yourhandle/ts-forecasting-anomaly-lab.git
+git clone https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab.git
 cd ts-forecasting-anomaly-lab
 
 # Create virtual environment
@@ -519,7 +519,7 @@ If you use this toolkit in your research or work, please cite:
   title = {Time-Series Forecasting \& Anomaly Lab},
   author = {Dhieddine BARHOUMI},
   year = {2024},
-  url = {https://github.com/yourhandle/ts-forecasting-anomaly-lab}
+  url = {https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab}
 }
 ```
 
@@ -575,7 +575,7 @@ git push origin feature/amazing-feature
 **Dhieddine BARHOUMI**  
 📬 dhieddine.barhoumi@gmail.com
 
-🔗 **Project Link**: [github.com/yourhandle/ts-forecasting-anomaly-lab](https://github.com/yourhandle/ts-forecasting-anomaly-lab)
+🔗 **Project Link**: [github.com/dhiabarhoumi/ts-forecasting-anomaly-lab](https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab)
 
 ---
 

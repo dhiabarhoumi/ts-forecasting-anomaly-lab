@@ -154,7 +154,7 @@ Time-series forecasting with prediction intervals
 ## Contact
 
 **Model Owner**: Dhieddine BARHOUMI (dhieddine.barhoumi@gmail.com)  
-**Repository**: [github.com/yourhandle/ts-forecasting-anomaly-lab](https://github.com/yourhandle/ts-forecasting-anomaly-lab)  
+**Repository**: [github.com/dhiabarhoumi/ts-forecasting-anomaly-lab](https://github.com/dhiabarhoumi/ts-forecasting-anomaly-lab)  
 **Last Updated**: April 2024
 
 ## References
